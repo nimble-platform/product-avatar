@@ -1,0 +1,14 @@
+{
+  "name": "productavatar",
+  "app_id": "",
+  "type": "ionic-angular",
+  "proxies": [
+    {
+      "path": "/",
+      "proxyUrl": "http://cors.api.com"
+    }
+  ],
+  "integrations": {
+    "cordova": {}
+  }
+}

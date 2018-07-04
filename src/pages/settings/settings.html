@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Settings</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-avatar item-left>
+                <img src="assets/icon/user-avatar.jpg">
+            </ion-avatar>
+            <h2 ion-text color="primary">{{currentUser.name}}</h2>
+            <p ion-text color="secondary">{{currentUser.brand}}</p>
+            <p *ngFor="let role of currentUser.groupConsumer" ion-text color="secondary">{{role.description}}</p>
+        </ion-item>
+        <ion-item>
+            <button color="secondary" ion-button clear item-left>
+                <ion-icon name="settings" item-left></ion-icon>
+                Edit Profile
+            </button>
+        </ion-item>
+        <ion-item>
+            <button color="danger" block ion-button (click)="logout()">
+                <ion-icon name="log-out" item-left></ion-icon>
+                Log-out
+            </button>
+        </ion-item>
+    </ion-list>
+</ion-content>

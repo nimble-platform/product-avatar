@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img class="menu-items" src="assets/icon/nimble.png">
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-tabs tabsPlacement="top">
+  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="Code Scanner" tabIcon="barcode"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="Settings" tabIcon="settings"></ion-tab> 
+</ion-tabs>

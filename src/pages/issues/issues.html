@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>issues</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-card *ngFor="let issues of issuesSteps">
+      <ion-card-header>
+        Issues
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+
+            <ion-item *ngFor="let item of issues">
+                <ion-label stacked>{{item.label}}</ion-label>
+                <ion-input type="text" value={{item.value}} disabled=true></ion-input>
+            </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

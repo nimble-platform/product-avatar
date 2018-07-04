@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title (click)="showProductInformation()">SN:{{appService.getSn()}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content fullscreen="true" padding>
+  <ul class="timeline">
+    <li *ngFor="let timelineEvent of timeLine ; let l=last ;let isOdd = odd" [class.timeline-inverted]="isOdd">
+      <div class="timeline-badge" ion-button (click)="itemTapped($event, timelineEvent)">
+        <ion-icon name={{this.appService.getIcon(timelineEvent.phase)}} item-left></ion-icon>
+      </div>
+      <div class="timeline-panel">
+        <div class="timeline-heading">
+          <p class="timeline-title">{{timelineEvent.phase}}</p>
+        </div>
+        <div class="timeline-body">
+        </div>
+      </div>
+    </li>
+  </ul>
+</ion-content>
