@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Contact
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <div>
+      <img src="{{ json.photo }}">
+    </div>
+    <table>
+      <tr><td>description</td><td>{{ json.description }}</td></tr>
+      <tr><td>productGroup</td><td>{{ json.productGroup }}</td></tr>
+      <tr><td>productType</td><td>{{ json.productType }}</td></tr>
+      <tr><td>serialNumber</td><td>{{ json.serialNumber }}</td></tr>
+      <tr><td>processDuration</td><td>{{ json.processDuration.value}} {{ json.processDuration.unitOfMeasure}}</td></tr>
+    </table>
+  </div>
+</ion-content>

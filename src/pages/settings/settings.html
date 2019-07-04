@@ -1,30 +1,33 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>Settings</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <ion-list>
-        <ion-item>
-            <ion-avatar item-left>
-                <img src="assets/icon/user-avatar.jpg">
-            </ion-avatar>
-            <h2 ion-text color="primary">{{currentUser.name}}</h2>
-            <p ion-text color="secondary">{{currentUser.brand}}</p>
-            <p *ngFor="let role of currentUser.groupConsumer" ion-text color="secondary">{{role.description}}</p>
-        </ion-item>
-        <ion-item>
-            <button color="secondary" ion-button clear item-left>
-                <ion-icon name="settings" item-left></ion-icon>
-                Edit Profile
-            </button>
-        </ion-item>
-        <ion-item>
-            <button color="danger" block ion-button (click)="logout()">
-                <ion-icon name="log-out" item-left></ion-icon>
-                Log-out
-            </button>
-        </ion-item>
-    </ion-list>
+  <div>
+    <img src="{{logo}}">
+  </div>
+  <h1>{{currentUser.firstname}} {{currentUser.lastname}}</h1>
+  <h2>{{currentUser.companyName.it}}</h2>
+  <ul>
+    <li *ngFor="let role of currentUser.roles">{{role}}</li>
+  </ul>
+  <hr>
+  <h1>Nimble Instance: {{currentNimble.url}}</h1>
+  <hr>
+  Total Companies : {{currentNimble.statistic?.totalCompanies}}<br>
+  Total Users : {{currentNimble.statistic?.totalUsers}}<br>
+  <hr>
+  Identity service version: {{currentNimble.identityService?.build.version}}<br>
+  <hr>
+  Business process version: {{currentNimble.businessProcess?.build.version}}<br>
+  <hr>
+  DataChannel versione: {{currentNimble.dataChannel?.build.version}}<br>
+  Has internal : {{currentNimble.internalService}}<br>
+  Has filtering : {{currentNimble.filteringService}}<br>
+  <hr>
+  <div (click)="logout()" style="border:1px solid black; padding: 20px; width:100%; text-align: center;">
+    Logout
+  </div>
 </ion-content>

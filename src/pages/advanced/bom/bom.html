@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Contact
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <div>
+      <img src="{{ json.photo }}">
+    </div>
+    <table>
+      <tr><td>description</td><td>{{ json.description }}</td></tr>
+      <tr><td>productGroup</td><td>{{ json.productGroup }}</td></tr>
+      <tr><td>productType</td><td>{{ json.productType }}</td></tr>
+      <tr><td>serialNumber</td><td>{{ json.serialNumber }}</td></tr>
+      <tr><td>processDuration</td><td>{{ json.processDuration.value}} {{ json.processDuration.unitOfMeasure}}</td></tr>
+      <tr><td>processCosts</td><td>{{ json.processCosts.value }} {{ json.processCosts.unitOfMeasure}}</td></tr>
+      <tr><td>transportCost</td><td>{{ json.transportCost.value }} {{ json.transportCost.unitOfMeasure}}</td></tr>
+      <tr><td>energyConsumption</td>{{ json.energyConsumption.value }} {{ json.energyConsumption.unitOfMeasure}}<td></td></tr>
+      <tr><td>disposalCost</td><td>{{ json.disposalCost.value }} {{ json.disposalCost.unitOfMeasure}}</td></tr>
+      <tr><td>quantityIron</td><td>{{ json.quantityIron.value }} {{ json.quantityIron.unitOfMeasure}}</td></tr>
+      <tr><td>quantityPlastic</td><td>{{ json.quantityPlastic.value }} {{ json.quantityPlastic.unitOfMeasure}}</td></tr>
+      <tr><td>quantityCopper</td><td>{{ json.quantityCopper.value }} {{ json.quantityCopper.unitOfMeasure}}</td></tr>
+      <tr><td>quantitySilver</td><td>{{ json.quantitySilver.value }} {{ json.quantitySilver.unitOfMeasure}}</td></tr>
+      <tr><td>quantityGold</td><td>{{ json.quantityGold.value }} {{ json.quantityGold.unitOfMeasure}}</td></tr>
+
+      <tr><td>quantityPalladium</td><td> {{ json.quantityPalladium.value}}  {{ json.quantityPalladium.unitOfMeasure}}</td></tr>
+      <tr><td>quantityInox</td><td>{{ json.quantityInox.value }} {{ json.quantityInox.unitOfMeasure}}</td></tr>
+      <tr><td>quantityAluminium</td><td> {{ json.quantityAluminium.value}} {{ json.quantityAluminium.unitOfMeasure}}</td></tr>
+      <tr><td>quantityGlass</td><td>{{ json.quantityGlass.value }} {{ json.quantityGlass.unitOfMeasure}}</td></tr>
+      <tr><td>quantityGas</td><td>{{ json.quantityGas.value }} {{ json.quantityGas.unitOfMeasure}}</td></tr>
+      <tr><td>quantityOil</td><td>{{ json.quantityOil.value }} {{ json.quantityOil.unitOfMeasure}}</td></tr>
+      <tr><td>quantityConcreteDisposed</td><td>{{ json.quantityConcreteDisposed.value }} {{ json.quantityConcreteDisposed.unitOfMeasure}}</td></tr>
+      <tr><td>quantityWasteDisposed</td><td>{{ json.quantityWasteDisposed.value }} {{ json.quantityWasteDisposed.unitOfMeasure}}</td></tr>
+
+
+
+    </table>
+  </div>
+</ion-content>

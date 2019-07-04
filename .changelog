@@ -1,3 +1,7 @@
+Version: 2.5
+release data: 2019-07-04
+  -- ProductAvatar integration with Nimble Identity service (all known sectorial instances).
+  -- first integration with Business process Service and Data Channel Service.
 Version: 0.4
 release data: 2018-07-04
   -- ProductAvatar visualization functionalities

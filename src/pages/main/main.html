@@ -5,8 +5,12 @@
 </ion-header>
 
 <ion-content padding>
-  <h6 ion-text color="secondary">
-    Product Avatar is a mobile application where is possible to manage a company’s products during their lifecycles in the most effective way.
-    In order to search the product data click in "Code Scanner" tab and insert product's serial number.
-  </h6>
+  <h1>Hello {{currentUser?.firstname}} {{currentUser?.lastname}}</h1>
+
+  <!--<div>
+    <div (click)="goProductManager('bom')" style="border:2px solid black; padding: 20px; margin-bottom: 20px; width: 300px;">Product manager - bom</div>
+    <div (click)="goProductManager('quality')" style="border:2px solid black; padding: 20px; margin-bottom: 20px; width: 300px;">Product manager - quality</div>
+    <div (click)="goProductManager('product')" style="border:2px solid black; padding: 20px; margin-bottom: 20px; width: 300px;">Product manager - product</div>
+    <div (click)="goProductManager('production')" style="border:2px solid black; padding: 20px; margin-bottom: 20px; width: 300px;">Product manager - production</div>
+  </div>-->
 </ion-content>

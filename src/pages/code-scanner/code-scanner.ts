@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { HomePage } from "../home/home";
 import { AppService } from "../../app/app.service";
+import {LoginPage} from "../login/login";
 
 @IonicPage()
 @Component({
@@ -23,6 +24,8 @@ export class CodeScannerPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CodeScannerPage');
+    this.navCtrl.setRoot(LoginPage);
+
   }
   getProductData(barcode) {
     this.appService.setSn(barcode);

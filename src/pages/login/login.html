@@ -15,6 +15,14 @@
           <ion-item>
             <ion-input placeholder="Password" name="password" id="passwordField" type="password" required [(ngModel)]="credential.password"></ion-input>
           </ion-item>
+          <ion-item>
+
+            <select [(ngModel)]="nimbleServer" name="nimbleServer">
+              <option value="-1" selected="selected">Seleziona il server di collegamento</option>
+              <option *ngFor="let server of nimbleEndPoint" [value]="server.id">{{server.name}}</option>
+            </select>
+          </ion-item>
+
         </ion-list>
       </ion-col>
     </ion-row>
