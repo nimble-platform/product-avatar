@@ -33,6 +33,8 @@ import { ProductionPage } from "../pages/advanced/production/production";
 import { ProductPage} from "../pages/advanced/product/product";
 import { ProductmanagerPage } from "../pages/advanced/productmanager/productmanager";
 import { File } from '@ionic-native/file';
+import { ContractslistPage} from "../pages/contractslist/contractslist";
+import { ContractdetailsPage} from "../pages/contractdetails/contractdetails";
 
 import { Configuration } from './app.configuration';
 import {NimbleService} from "./nimble.service";
@@ -51,8 +53,9 @@ const nimble_endpoint = [
   },
   {'id' : 2,
     'url': 'https://nimble-platform.salzburgresearch.at/nimble/',
-    'name' :  'SRFG MVP',
+    'name' :  'SRFG MVP / SALISBURGO NIMBLE',
     'imgUrl': '',
+    'partyID': 11304,
   },
   {'id' : 3,
     'url': 'https://fmp-nimble.salzburgresearch.at/api/',
@@ -85,7 +88,9 @@ const ID_PRODUCER = 1;
     QualityPage,
     ProductionPage,
     ProductPage,
-    ProductmanagerPage
+    ProductmanagerPage,
+    ContractslistPage,
+    ContractdetailsPage
   ],
   imports: [
     BrowserModule,
@@ -109,7 +114,9 @@ const ID_PRODUCER = 1;
     QualityPage,
     ProductionPage,
     ProductPage,
-    ProductmanagerPage
+    ProductmanagerPage,
+    ContractslistPage,
+    ContractdetailsPage
   ],
   providers: [
     AuthService,

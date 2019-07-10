@@ -1,6 +1,6 @@
 {
   "name": "productavatar",
-  "version": "0.2.5",
+  "version": "2.8.0",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
   "private": true,
@@ -37,7 +37,9 @@
     "phonegap-plugin-barcodescanner": "^7.1.2",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.26"
+    "zone.js": "0.8.26",
+    "cordova-ios": "~4.3.1",
+    "cordova-browser": "~4.1.0"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.4",
@@ -46,7 +48,9 @@
   "description": "An Ionic project",
   "cordova": {
     "platforms": [
-      "android"
+      "android",
+      "ios",
+      "browser"
     ],
     "plugins": {
       "cordova-plugin-device": {},

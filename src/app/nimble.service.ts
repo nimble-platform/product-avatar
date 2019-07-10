@@ -27,7 +27,7 @@ export class NimbleClass {
 )
 
 export class NimbleService {
-  public currentUser: User;
+  public currentUser: any;
   public currentNimble: any;
   public url : any;
 
@@ -37,7 +37,9 @@ export class NimbleService {
   }
 
   retriveAllData() {
+
     this.currentUser = this.auth.getUserInfo();
+
     this.currentNimble.url = this.nimbleEndPoint[this.currentUser.idServer].url;
 
     this.getStatistic().then(data => this.currentNimble.statistic = data);
@@ -63,6 +65,8 @@ export class NimbleService {
 
   public getOptions() {
     console.log(this.currentUser);
+
+    this.currentUser = this.auth.getUserInfo();
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -143,6 +147,46 @@ export class NimbleService {
     let options = this.getOptions();
 
     return this.http.get(this.nimbleEndPoint[this.currentUser.idServer].url+"business-process/info",options)
+      .map(res => {
+        return res.json();
+      })
+      .toPromise();
+  }
+
+  public getContractList1() {
+    let options = this.getOptions();
+
+    return this.http.get(this.nimbleEndPoint[this.currentUser.idServer].url+"business-process/collaboration-groups?partyId="+this.currentUser.companyID+"&collaborationRole=BUYER&offset=0&limit=5&archived=false",options)
+      .map(res => {
+        return res.json();
+      })
+      .toPromise();
+  }
+
+  public getContractList2() {
+    let options = this.getOptions();
+
+    return this.http.get(this.nimbleEndPoint[this.currentUser.idServer].url+"business-process/collaboration-groups?partyId="+this.currentUser.companyID+"&collaborationRole=BUYER&offset=0&limit=5&archived=true",options)
+      .map(res => {
+        return res.json();
+      })
+      .toPromise();
+  }
+
+  public getProcessInstance(id) {
+    let options = this.getOptions();
+
+    return this.http.get(this.nimbleEndPoint[this.currentUser.idServer].url+"business-process/processInstance/"+id+"/details",options)
+      .map(res => {
+        return res.json();
+      })
+      .toPromise();
+  }
+
+  public getDataChannelFromAssociatedGroups(id) {
+    let options = this.getOptions();
+
+    return this.http.get(this.nimbleEndPoint[this.currentUser.idServer].url+"data-channel/channel/business-process/"+id,options)
       .map(res => {
         return res.json();
       })
