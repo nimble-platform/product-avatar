@@ -1,11 +1,20 @@
 page-contractslist {
 
   .contenitore {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid #cccccc;
+    //border-bottom: 2px solid #cccccc;
+
+
     div {
       line-height: 150%;
+
+
+    }
+
+    .data {
+      border: 2px black dashed;
+      padding: 20px;
+      margin-bottom: 20px;
+
     }
 
     .btn {

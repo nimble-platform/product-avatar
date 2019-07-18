@@ -64,8 +64,6 @@ export class NimbleService {
   }
 
   public getOptions() {
-    console.log(this.currentUser);
-
     this.currentUser = this.auth.getUserInfo();
 
     let headers = new Headers();
@@ -191,6 +189,28 @@ export class NimbleService {
         return res.json();
       })
       .toPromise();
+  }
+
+  public getChannelAll() {
+    let options = this.getOptions();
+
+    return this.http.get(this.nimbleEndPoint[this.currentUser.idServer].url+"data-channel/channel/all",options)
+      .map(res => {
+        return res.json();
+      })
+      .toPromise();
+
+  }
+
+  public getBusinessProcessFromId(id) {
+    let options = this.getOptions();
+
+    return this.http.get(this.nimbleEndPoint[this.currentUser.idServer].url+"data-channel/channel/business-process/"+id,options)
+      .map(res => {
+        return res.json();
+      })
+      .toPromise();
+
   }
 
 }

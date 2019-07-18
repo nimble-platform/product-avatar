@@ -38,6 +38,7 @@ import { ContractdetailsPage} from "../pages/contractdetails/contractdetails";
 
 import { Configuration } from './app.configuration';
 import {NimbleService} from "./nimble.service";
+import {ShowDataChannelPage} from "../pages/show-data-channel/show-data-channel";
 
 const login_endpoint = 'http://nimblewg.holonix.biz/identity/login';
 const nimble_endpoint = [
@@ -90,7 +91,8 @@ const ID_PRODUCER = 1;
     ProductPage,
     ProductmanagerPage,
     ContractslistPage,
-    ContractdetailsPage
+    ContractdetailsPage,
+    ShowDataChannelPage
   ],
   imports: [
     BrowserModule,
@@ -116,7 +118,8 @@ const ID_PRODUCER = 1;
     ProductPage,
     ProductmanagerPage,
     ContractslistPage,
-    ContractdetailsPage
+    ContractdetailsPage,
+    ShowDataChannelPage
   ],
   providers: [
     AuthService,

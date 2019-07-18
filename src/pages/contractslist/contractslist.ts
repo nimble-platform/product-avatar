@@ -4,6 +4,7 @@ import { AuthService} from "../../app/auth.service";
 import { NimbleService} from "../../app/nimble.service";
 import {ProductmanagerPage} from "../advanced/productmanager/productmanager";
 import { ContractdetailsPage} from "../contractdetails/contractdetails";
+import {ShowDataChannelPage} from "../show-data-channel/show-data-channel";
 
 /**
  * Generated class for the ContractslistPage page.
@@ -34,8 +35,10 @@ export class ContractslistPage {
 
     Promise.all([c1,c2])
       .then(values => {
-
-        this.loading = false;
+        let dcPromise = [];
+        console.log("c1");console.log(c1);
+        console.log("c2");console.log(c2);
+        //this.loading = false;
 
         this.collaborations = values[0].collaborationGroups.concat(values[1].collaborationGroups);
         console.log(this.collaborations);
@@ -46,7 +49,7 @@ export class ContractslistPage {
         Object.keys(this.collaborations).forEach((key) => {
           let max = 0;
           let item = this.collaborations[key].associatedProcessInstanceGroups[0];
-          console.log(item);
+          console.log(this.collaborations[key]);
           item.processInstanceIDs.forEach((val) => {
             if (val > max) max = val;
           });
@@ -54,15 +57,56 @@ export class ContractslistPage {
           this.collaborations[key].processInstance = max;
           this.nimble.getProcessInstance(max)
             .then((res) => {
-              console.log("Preso processInstance per "+max);
-              console.log(res);
-              console.log()
+              //console.log("Preso processInstance per "+max);
+              //console.log(res);
+              //console.log()
               if (typeof(res.requestDocument.item.manufacturerParty.brandName[0]) != 'undefined') this.collaborations[key].brandName = res.requestDocument.item.manufacturerParty.brandName[0].value;
               else this.collaborations[key].brandName = 'NN';
             })
 
+          dcPromise[key] = this.nimble.getBusinessProcessFromId(this.collaborations[key].associatedProcessInstanceGroups[0].associatedGroups[0])
+            .then((bpf) => {
+              console.log("bpf");
+              console.log(bpf);
+              this.collaborations[key].datachannel = bpf;
+              if (bpf.startDateTime == null) {
+                this.collaborations[key].datachannel.DataChannelShow = false;
+                this.collaborations[key].datachannel.DataChannelType = "Negotiating";
+              }
+              else if (bpf.startDateTime != null && bpf.endDateTime == null) {
+                this.collaborations[key].datachannel.DataChannelShow = true;
+                this.collaborations[key].datachannel.DataChannelType = "Started";
+              }
+              else if (bpf.endDateTime != null) {
+                this.collaborations[key].datachannel.DataChannelShow = false;
+                this.collaborations[key].datachannel.DataChannelType = "Closed";
+              }
+
+              if (this.collaborations[key].datachannel.usePrivateServers) {
+                this.collaborations[key].datachannel.DataChannelType += " private";
+              }
+              else {
+                this.collaborations[key].datachannel.DataChannelType += " internal";
+              }
+
+
+            })
+            .catch((bpferr) => {
+              console.log("bpf err");
+              console.log(bpferr);
+              this.collaborations[key].datachannel = bpferr;
+              this.collaborations[key].datachannel.DataChannelShow = false;
+              this.collaborations[key].datachannel.DataChannelType = "No data chanel";
+
+            })
+
+
         });
 
+        Promise.all(dcPromise)
+          .then((values) => {
+            this.loading = false;
+          });
         /*
          0:
 archived: false
@@ -90,7 +134,8 @@ processInstanceIDs: ["296785"]
 
   goContract(id) {
     //this.collaborations[id].associatedProcessInstanceGroups[0].associatedGroups[0]
-    this.navCtrl.push(ContractdetailsPage, { group : this.collaborations[id].associatedProcessInstanceGroups[0].associatedGroups[0]});
+    this.navCtrl.push(ShowDataChannelPage, { data : this.collaborations[id].datachannel});
+    //this.navCtrl.push(ContractdetailsPage, { group : this.collaborations[id].associatedProcessInstanceGroups[0].associatedGroups[0]});
   }
 
 }

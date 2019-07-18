@@ -17,13 +17,35 @@
 <h1>Lista contratti</h1>
   <div class="loading" *ngIf="loading">Caricamento....</div>
   <div class="contenitore" *ngFor="let item of collaborations; index as id">
-    <div class="name">Name: {{item.associatedProcessInstanceGroups[0].name}}</div>
-    <div class="status">Status: {{item.associatedProcessInstanceGroups[0].status}}</div>
-    <div class="collaborationRole">Collaboration Role: {{item.associatedProcessInstanceGroups[0].collaborationRole}}</div>
-    <div class="lastActivityTime">Last Activity Time: {{item.associatedProcessInstanceGroups[0].lastActivityTime}}</div>
-    <div class="processInstance">Process Instance: {{item.processInstance}}</div>
-    <div class="brandName">Brand Name: {{item.brandName}}</div>
-    <div >Stato data Channel: <span (click)="goContract(id)">Open - Internal / Open - Private</span></div>
-    <!-- div class="btn" (click)="goContract(id)">Visualizza dettagli</div -->
+    <div *ngIf="item.datachannel?.DataChannelShow">
+      <div class="data" >
+        <div class="name">Name: {{item.associatedProcessInstanceGroups[0].name}}</div>
+        <div class="status">Status: {{item.associatedProcessInstanceGroups[0].status}}</div>
+        <div class="collaborationRole">Collaboration Role: {{item.associatedProcessInstanceGroups[0].collaborationRole}}</div>
+        <div class="lastActivityTime">Last Activity Time: {{item.associatedProcessInstanceGroups[0].lastActivityTime}}</div>
+        <div class="processInstance">Process Instance: {{item.processInstance}}</div>
+        <div class="brandName">Brand Name: {{item.brandName}}</div>
+        <div>Data inizio: {{item.datachannel.startDateTime}}</div>
+        <div *ngIf="item.datachannel?.endDateTime != null">Data fine: {{item.datachannel.endDateTime}}</div>
+        <div>Stato data Channel: {{item.datachannel?.DataChannelType}}</div>
+
+        <div class="btn" (click)="goContract(id)" *ngIf="item.datachannel?.DataChannelShow">Visualizza dettagli</div>
+      </div>
+    </div>
+  </div>
+  <div class="contenitore" *ngFor="let item of collaborations; index as id">
+    <div *ngIf="!item.datachannel?.DataChannelShow">
+      <div class="data" >
+        <div class="name">Name: {{item.associatedProcessInstanceGroups[0].name}}</div>
+        <div class="status">Status: {{item.associatedProcessInstanceGroups[0].status}}</div>
+        <div class="collaborationRole">Collaboration Role: {{item.associatedProcessInstanceGroups[0].collaborationRole}}</div>
+        <div class="lastActivityTime">Last Activity Time: {{item.associatedProcessInstanceGroups[0].lastActivityTime}}</div>
+        <div class="processInstance">Process Instance: {{item.processInstance}}</div>
+        <div class="brandName">Brand Name: {{item.brandName}}</div>
+        <div *ngIf="item.datachannel?.startDateTime != null">Data inizio: {{item.datachannel?.startDateTime}}</div>
+        <div *ngIf="item.datachannel?.endDateTime != null">Data fine: {{item.datachannel.endDateTime}}</div>
+        <div >Stato data Channel: <span (click)="goContract(id)">{{item.datachannel?.DataChannelType}}</span></div>
+      </div>
+    </div>
   </div>
 </ion-content>

@@ -10,7 +10,7 @@ import { ProductmanagerPage} from "../advanced/productmanager/productmanager";
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  credential = {"username": 'yourusername', "password": 'yourpassword'};
+  credential = {"username": 'yourNimbleInstanceLogin', "password": 'xxxxxx'};
   nimbleServer: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthService,@Inject('NIMBLE_ENDPOINT') public nimbleEndPoint: any) {}

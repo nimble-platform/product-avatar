@@ -1,4 +1,4 @@
-## Product avatar 2.5
+## Product avatar 3.0
 
 The Product Avatar is a web mobile application developed for interact with Nimble DataChannel in order to be able in
 searching, tracking and retrieving each kind of Iot data created to monitor a contract in Nimble or to give live to a Data Trading on demand.
@@ -13,7 +13,7 @@ It has got internal datatype viewer which enable the appliation to give a data l
 
 It is for example used in White Goods scenario in order to track the lifecycle of products starting from production, going to issues and ticketing from CRM, till the end of lify with recycling data (Bill of Material).
 
-This release is a working on code (multi instance Nimble login and info runs) in order to integrate last version of DataChannel service released in june 2019.
+This release is a working-on code (multi instance Nimble login and info runs) in order to integrate last version of DataChannel service released in june 2019.
 
 ## Howto run as developer
 Download the project
@@ -29,7 +29,7 @@ You need a device which runs third party app (https://www.corsoandroid.it/permet
 
 run
 
-$ ionic cordova build --android
+$ ionic cordova build android
 
 You find install file in "platforms/android/app/build/outputs/apk/debug/app-debug.apk"
 

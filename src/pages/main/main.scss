@@ -1,3 +1,46 @@
 page-main {
 
+  .disabled {
+    opacity: 0.3;
+  }
+  .colDC {
+    margin-bottom: 20px;
+    border: 2px black dashed;
+    padding: 10px;
+  }
+
+  .btn {
+    background: #1c28fb;
+    border-radius: 8px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+  }
+
+  table {
+    tr {
+      td {
+        line-height: 30px;
+
+        &.label {
+          padding-right: 20px;
+          border-right: 2px #cccccc solid;
+        }
+        &.dato {
+          padding-left: 20px;
+        }
+      }
+
+
+    }
+
+  }
 }
