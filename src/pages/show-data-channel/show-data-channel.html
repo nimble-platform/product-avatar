@@ -99,7 +99,7 @@
     <hr>
     <h2>Associated Sensors</h2>
     <div *ngFor="let item of data.associatedSensors; let i = index;"  class="associated-sensors">
-      <h3>{{item.name}}</h3>
+      <h3><img *ngIf="item.img != ''" src="{{item.img}}" width="60px"> {{item.name}}</h3>
       <h5 class="description">{{item.description}}</h5>
       <table>
         <tr>
@@ -143,6 +143,16 @@
                   <td>{{item.machine.ownerID}}</td>
                 </tr>
               </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div *ngIf="data.usePrivateServers == false">
+              <div class="btn" (click)="nextdata(i)">Leggi messaggi</div>
+              <div *ngIf="hasFilteringData" class="btn" (click)="filterData(i)">Filtra</div>
+              <div *ngIf="!hasFilteringData" (click)="filterData(i)" class="btn disabled">Filtra</div>
+              <div (click)="sendIotDataTest()" class="btn">send iot data test</div>
+            </div>
           </td>
         </tr>
       </table>

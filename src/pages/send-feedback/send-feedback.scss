@@ -1,0 +1,12 @@
+page-send-feedback {
+  .btn {
+    @include btn;
+  }
+
+  textarea.text-input {
+    border: 2px #f4f4f4 solid;
+    padding: 5px;
+    height: 200px;
+    margin-top: 0;
+  }
+}

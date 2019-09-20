@@ -1,0 +1,17 @@
+page-filtered-data-row-detail {
+  .btn {
+     @include btn;
+   }
+
+  .bottoni {
+    div {
+      margin-left: 4%;
+      width: 42%;
+      float: left;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-right: 4%;
+    }
+  }
+
+}

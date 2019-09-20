@@ -3,6 +3,7 @@ import {Http, Request, RequestOptions, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {HttpHeaders, HttpParams} from "@angular/common/http";
+import { Storage } from '@ionic/storage';
 /*
   Generated class for the AuthService provider.
 
@@ -26,23 +27,40 @@ export class User {
 }
 
 @Injectable(
-  
+
 )
 export class AuthService {
   public currentUser: any;
 
-  constructor(public http: Http, @Inject('LOGIN_ENDPOINT') public loginEndPoint: string, @Inject('NIMBLE_ENDPOINT') public nimbleEndPoint: any) {
+  constructor(public http: Http, @Inject('LOGIN_ENDPOINT') public loginEndPoint: string, @Inject('NIMBLE_ENDPOINT') public nimbleEndPoint: any,
+              private storage: Storage) {
+    this.storage.get('currentUser').then(data => {
+      if (data === null) return;
+      this.currentUser = data;
+    })
 
   }
 
-  public login(credentials,nimbleServer) {
+  public login(credentials,nimbleServer,language) {
     //var resource = this.loginEndPoint + "/consumer/loginConsumer/" + credentials.username + "/" + credentials.password;
 
     return this.http.post(this.nimbleEndPoint[nimbleServer].url+"identity/login",{"username":credentials.username,"password":credentials.password})
       .map(res => {
+        console.log("dentro map di login");
+        console.log(res);
         this.currentUser = res.json();
         this.currentUser.idServer = nimbleServer;
-        return this.currentUser;
+
+        var p = [];
+        p.push(this.getCompanyInfo());
+        p.push(this.getCompanySettings());
+        return Promise.all(p).then(values => {
+          this.currentUser.companyInfo = values[0];
+          this.currentUser.companySettings = values[1];
+          this.storage.set('currentUser',this.currentUser);
+          this.currentUser.language = language;
+          return this.currentUser;
+        });
       })
       .toPromise();
   }
@@ -77,8 +95,14 @@ export class AuthService {
       .toPromise();
   }
 
-  public getUserInfo(): User {
+   getUserInfo(): User {
+    console.log("auth getUserInfo");
+    console.log(this.currentUser);
     return this.currentUser;
+  }
+
+  public setUserInfo(data) {
+    this.currentUser = data;
   }
 
   public logout() {

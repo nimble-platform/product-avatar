@@ -23,7 +23,7 @@ export class NimbleClass {
 }
 
 @Injectable(
-  
+
 )
 
 export class NimbleService {
@@ -151,20 +151,20 @@ export class NimbleService {
       .toPromise();
   }
 
-  public getContractList1() {
+  public getContractListActive(collaborationRole) {
     let options = this.getOptions();
 
-    return this.http.get(this.nimbleEndPoint[this.currentUser.idServer].url+"business-process/collaboration-groups?partyId="+this.currentUser.companyID+"&collaborationRole=BUYER&offset=0&limit=5&archived=false",options)
+    return this.http.get(this.nimbleEndPoint[this.currentUser.idServer].url+"business-process/collaboration-groups?partyId="+this.currentUser.companyID+"&collaborationRole="+collaborationRole+"&offset=0&limit=5&archived=false",options)
       .map(res => {
         return res.json();
       })
       .toPromise();
   }
 
-  public getContractList2() {
+  public getContractListArchived(collaborationRole) {
     let options = this.getOptions();
 
-    return this.http.get(this.nimbleEndPoint[this.currentUser.idServer].url+"business-process/collaboration-groups?partyId="+this.currentUser.companyID+"&collaborationRole=BUYER&offset=0&limit=5&archived=true",options)
+    return this.http.get(this.nimbleEndPoint[this.currentUser.idServer].url+"business-process/collaboration-groups?partyId="+this.currentUser.companyID+"&collaborationRole="+collaborationRole+"&offset=0&limit=5&archived=true",options)
       .map(res => {
         return res.json();
       })
@@ -212,5 +212,27 @@ export class NimbleService {
       .toPromise();
 
   }
+
+  public getNextData(url,idData,idSensor) {
+    let options = this.getOptions();
+    //return this.http.post('http://nimblewg.holonix.biz:8889/consumer/getNextMessages?idDataChannel=' + idData+ '&idSensor='+idSensor,options)
+    return this.http.get('http://nimblewg.holonix.biz:8889/consumer/getNextMessages?idDataChannel=388383-2923982-292929-9223&idSensor=25',options)
+      .map(res => {
+        return res.json();
+      })
+      .toPromise();
+  }
+
+
+  public sendIoTDataTest(idData,idSensor, iotData) {
+    let options = this.getOptions();
+    //return this.http.get('http://nimblewg.holonix.biz:8889/producer/sendIotDataTest?idDataChannel=' + idData + '&idSensor=' + idSensor + '&datakey=38383&iotDataTest='+iotData, options)
+    return this.http.get('http://nimblewg.holonix.biz:8889/producer/sendIotDataTest?idDataChannel=388383-2923982-292929-9223&idSensor=25&datakey=38383&iotDataTest='+iotData, options)
+      .map(res => {
+        return res.json();
+      })
+      .toPromise();
+  }
+
 
 }

@@ -4,6 +4,7 @@ import { AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { AuthService } from "../../app/auth.service";
 import {NimbleClass, NimbleService} from "../../app/nimble.service";
+import {Storage} from "@ionic/storage";
 
 @IonicPage()
 @Component({
@@ -22,7 +23,8 @@ export class SettingsPage {
               public appCtrl: App,
               public auth: AuthService,
               public nimble: NimbleService,
-              @Inject('NIMBLE_ENDPOINT') public nimbleEndPoint: any) {
+              @Inject('NIMBLE_ENDPOINT') public nimbleEndPoint: any,
+              private storage: Storage) {
     this.currentUser = auth.getUserInfo();
     console.log(this.currentUser);
     this.currentNimble = this.nimble.retriveAllData();
@@ -75,9 +77,12 @@ export class SettingsPage {
           text: 'Confirm',
           handler: () => {
             console.log('logout confirmed...');
-            // TODO delete user info from authService
-            // this.auth.logout();
-            this.appCtrl.getRootNav().setRoot(LoginPage);
+            this.storage.remove('currentUser')
+              .then(data => {
+                // TODO delete user info from authService
+                // this.auth.logout();
+                this.appCtrl.getRootNav().setRoot(LoginPage);
+              });
           }
         }
       ]

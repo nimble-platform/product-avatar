@@ -14,8 +14,30 @@
 
 
 <ion-content padding>
-<h1>Lista contratti</h1>
+<h1>{{'Lista contratti' | translate}} </h1>
+  <div>
+    <ion-list [(ngModel)]="checker"  radio-group (ionChange)="getContractList()">
+        <div float-left class="my-checkbox">
+          <ion-item>
+            <ion-label text-uppercase>BUYER</ion-label>
+            <ion-radio value="BUYER" checked>
+            </ion-radio>
+          </ion-item>
+        </div>
+        <div float-right class="my-checkbox">
+          <ion-item>
+          <ion-label text-uppercase>Seller</ion-label>
+          <ion-radio  value="SELLER">
+          </ion-radio>
+          </ion-item>
+        </div>
+    </ion-list>
+  </div>
+
+  <div style="clear: both;"></div>
   <div class="loading" *ngIf="loading">Caricamento....</div>
+
+
   <div class="contenitore" *ngFor="let item of collaborations; index as id">
     <div *ngIf="item.datachannel?.DataChannelShow">
       <div class="data" >
@@ -44,7 +66,7 @@
         <div class="brandName">Brand Name: {{item.brandName}}</div>
         <div *ngIf="item.datachannel?.startDateTime != null">Data inizio: {{item.datachannel?.startDateTime}}</div>
         <div *ngIf="item.datachannel?.endDateTime != null">Data fine: {{item.datachannel.endDateTime}}</div>
-        <div >Stato data Channel: <span (click)="goContract(id)">{{item.datachannel?.DataChannelType}}</span></div>
+        <div >Stato data Channel: {{item.datachannel?.DataChannelType}}</div>
       </div>
     </div>
   </div>

@@ -3,6 +3,7 @@ import { AuthService } from "../../app/auth.service";
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from "../tabs/tabs";
 import { ProductmanagerPage} from "../advanced/productmanager/productmanager";
+import {TranslateService} from "@ngx-translate/core";
 
 @IonicPage()
 @Component({
@@ -10,10 +11,15 @@ import { ProductmanagerPage} from "../advanced/productmanager/productmanager";
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  credential = {"username": 'yourNimbleInstanceLogin', "password": 'xxxxxx'};
+  credential = {"username": '', "password": ''};
   nimbleServer: number;
+  languageApp: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthService,@Inject('NIMBLE_ENDPOINT') public nimbleEndPoint: any) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthService,@Inject('NIMBLE_ENDPOINT') public nimbleEndPoint: any,
+              private translate: TranslateService) {
+    this.nimbleServer = 0;
+    this.languageApp = 'it';
+  }
 
   public ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
@@ -26,7 +32,7 @@ export class LoginPage {
     return;
     */
     try {
-      let user = await this.auth.login(this.credential,this.nimbleServer);
+      let user = await this.auth.login(this.credential,this.nimbleServer,this.languageApp);
 
       user.roles = await this.auth.getUserRoles();
       console.log(user.roles);
@@ -37,12 +43,10 @@ export class LoginPage {
     }
 
   }
+
+  cambiaLingua() {
+    console.log("Cambio lingua "+this.languageApp)
+    this.translate.use(this.languageApp);
+  }
 }
-/*
-<ion-item>
-            <ion-label>nimble Server</ion-label>
-            <ion-select ok-text="seleziona il server nimble" >
-              <ion-select-option *ngFor="let server of nimbleEndPoint">{{server.name}}></ion-select-option>
-            </ion-select>
-          </ion-item>
- */
+

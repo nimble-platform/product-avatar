@@ -20,20 +20,15 @@ page-show-data-channel {
     line-height: 200%;
   }
 
-  .goback {
-    margin-top: 50px;
 
-    .btn {
-      background: #1c28fb;
-      color: white;
-      font-weight: bolder;
-      text-transform: uppercase;
-      width: fit-content;
-      padding: 10px;
-      text-align: center;
-      margin-left: auto;
-      margin-right: auto;
-      border-radius: 8px;
+  .btn {
+    @include btn;
+    float: left;
+    margin-right: 30px;
+
+    &.disabled {
+      background: #cccccc;
+      opacity: 0.5;
     }
   }
 }

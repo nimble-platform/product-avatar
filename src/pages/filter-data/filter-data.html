@@ -1,0 +1,58 @@
+<!--
+  Generated template for the FilterDataPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>FilterData</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div id="main">
+    <h1>{{sensor.name}}</h1>
+    <ion-grid>
+      <ion-row *ngFor="let item of campi; let i = index;">
+        <ion-col size="4">{{item.name}}</ion-col>
+        <ion-col size="6">
+          <div *ngIf="item.type == 'varchar'">
+            <ion-input class="item {{item.name}}" [(ngModel)]="campi[i].value" type="text"></ion-input>
+          </div>
+        </ion-col>
+        <ion-col size="2"><img *ngIf="item.barcode" src="assets/icon/barcode100.png" (click)="nimbleScanner()"></ion-col>
+      </ion-row>
+      <ion-row class="submit">
+        <ion-col>Max results</ion-col>
+        <ion-col>
+          <ion-list>
+          <ion-select placeholder="Scegli" [(ngModel)]="nrRows">
+            <ion-option value="10">10</ion-option>
+            <ion-option value="50">50</ion-option>
+            <ion-option value="ALL">ALL</ion-option>
+          </ion-select>
+          </ion-list>
+        </ion-col>
+        <ion-col><div class="btn" (click)="showRows()">Filter</div></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div *ngIf="loading">Filtro messaggi in corso</div>
+  <div id="filter" *ngIf="filterRows.length > 0">
+    <div  class="row" *ngFor="let item of filterRows; let i = index;" (click)="filteredDataRowDetail(i)">{{item.show}}</div>
+  </div>
+  <div id="filter" *ngIf="filterRows.length == 0 && filterButton && !loading">
+    Non ci sono messaggi da visualizzare
+  </div>
+  <div class="bottoni">
+      <!--<div class="btn" (click)="SendDataRequest()" *ngIf="this.campi[0].value != '' && this.sensor.hasrequest">Send Data Request</div>
+      <div class="btn disabled"  *ngIf="!(this.campi[0].value != '' && this.sensor.hasrequest)">Send Data Request</div>
+      -->
+      <div class="btn" (click)="sendDataRequest()">Send Data Request</div>
+      <div (click)="goBack()" class="btn">Torna indietro</div>
+  </div>
+</ion-content>

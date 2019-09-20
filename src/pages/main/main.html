@@ -5,13 +5,16 @@
 </ion-header>
 
 <ion-content padding>
+  <img style="width: 100%; max-width: 100%; height: 200px;" [src]="logo" *ngIf="logo != ''">
+  <h1 (click)="goInfo()">{{currentUser?.firstname}} {{currentUser?.lastname}}</h1>
   <!--<div>
     <div (click)="goProductManager('bom')" style="border:2px solid black; padding: 20px; margin-bottom: 20px; width: 300px;">Product manager - bom</div>
     <div (click)="goProductManager('quality')" style="border:2px solid black; padding: 20px; margin-bottom: 20px; width: 300px;">Product manager - quality</div>
     <div (click)="goProductManager('product')" style="border:2px solid black; padding: 20px; margin-bottom: 20px; width: 300px;">Product manager - product</div>
     <div (click)="goProductManager('production')" style="border:2px solid black; padding: 20px; margin-bottom: 20px; width: 300px;">Product manager - production</div>
   </div>-->
-  Hello
+
+  <div class="line" (click)="goDc()">Totale dataChannel: {{dataChannel?.length}}</div>
 </ion-content>
 
 

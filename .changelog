@@ -1,3 +1,7 @@
+Version: 4.0
+release data: 2019-09-20
+  -- datapipe integration: starting from a contract you can know if there is a datachannel, for internal configuration, if  started channel, can be asked last messages, filtering over them, sending test messages. First release of feedback and datarequest (on demande iot Data) is introduced. 
+  This release is created for demo purpose and link always to same datapipe (on holonix servers) waiting to install this service on all other Nimble instances.
 Version: 3.0
 release data: 2019-07-18
   -- datachannel integration: starting from a contract you can know if there is a datachannel, if it is internal or private, if it is open/negotiating/started/closed and if open looking to detail of configuration, sensors list and, for private datachannel, servers list.
