@@ -1,6 +1,12 @@
+Version: 5.0
+release data: 2019-02-29
+  -- whitegoods and textile custom version - added new IBM instance, adapt new json version for user groups, business processes
+  
 Version: 4.0
 release data: 2019-09-20
   -- datapipe integration: starting from a contract you can know if there is a datachannel, for internal configuration, if  started channel, can be asked last messages, filtering over them, sending test messages. First release of feedback and datarequest (on demande iot Data) is introduced. 
+  databuiltin for customization: added \www\assets\img_sensor : when a sensor has got the same name of an image found in this repository will appear near the sensor name in sensor lists.
+  
   This release is created for demo purpose and link always to same datapipe (on holonix servers) waiting to install this service on all other Nimble instances.
 Version: 3.0
 release data: 2019-07-18

@@ -42,8 +42,6 @@ export class AuthService {
   }
 
   public login(credentials,nimbleServer,language) {
-    //var resource = this.loginEndPoint + "/consumer/loginConsumer/" + credentials.username + "/" + credentials.password;
-
     return this.http.post(this.nimbleEndPoint[nimbleServer].url+"identity/login",{"username":credentials.username,"password":credentials.password})
       .map(res => {
         console.log("dentro map di login");
@@ -51,12 +49,16 @@ export class AuthService {
         this.currentUser = res.json();
         this.currentUser.idServer = nimbleServer;
 
+        //return res;
+
         var p = [];
         p.push(this.getCompanyInfo());
         p.push(this.getCompanySettings());
+        p.push(this.getUserRoles());
         return Promise.all(p).then(values => {
           this.currentUser.companyInfo = values[0];
           this.currentUser.companySettings = values[1];
+          this.currentUser.roles = values[2].roleItems;
           this.storage.set('currentUser',this.currentUser);
           this.currentUser.language = language;
           return this.currentUser;
@@ -77,6 +79,7 @@ export class AuthService {
       .toPromise();
   }
 
+
   public getUserRoles() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -85,10 +88,7 @@ export class AuthService {
 
     let options = new RequestOptions({headers: headers });
 
-    //Prendo i ruoli
-    //
-    //return this.http.get(this.nimbleEndPoint[this.currentUser.idServer].url,options)
-    return this.http.get(this.nimbleEndPoint[this.currentUser.idServer].url+"identity/roles/user?username="+encodeURIComponent(this.currentUser.email),options)
+    return this.http.get(this.nimbleEndPoint[this.currentUser.idServer].url+"identity/person/"+encodeURIComponent(this.currentUser.userID),options)
       .map(res => {
         return res.json();
       })

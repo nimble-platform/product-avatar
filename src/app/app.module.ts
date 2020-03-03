@@ -53,7 +53,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 const login_endpoint = 'http://nimblewg.holonix.biz/identity/login';
 const nimble_endpoint = [
   {'id' : 0,
-    'url': 'http://161.156.70.122/',
+    'url': 'http://161.156.70.120/',
     'name' :  'IBM MVP Whitegoods',
     'imgUrl': '',
   },

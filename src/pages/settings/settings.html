@@ -11,7 +11,7 @@
   <h1>{{currentUser.firstname}} {{currentUser.lastname}}</h1>
   <h2>{{currentUser.companyName.it}}</h2>
   <ul>
-    <li *ngFor="let role of currentUser.roles">{{role}}</li>
+    <li *ngFor="let role of currentUser.roles">{{role.item}}</li>
   </ul>
   <hr>
   <h1>Nimble Instance: {{currentNimble.url}}</h1>

@@ -27,15 +27,8 @@ export class LoginPage {
   }
 
   public async login() : Promise<any> {
-    /*this.navCtrl.setRoot(ProductmanagerPage);
-
-    return;
-    */
     try {
       let user = await this.auth.login(this.credential,this.nimbleServer,this.languageApp);
-
-      user.roles = await this.auth.getUserRoles();
-      console.log(user.roles);
 
       this.navCtrl.setRoot(TabsPage)
     } catch (error) {

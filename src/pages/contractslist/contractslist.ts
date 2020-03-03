@@ -67,12 +67,13 @@ export class ContractslistPage {
               //console.log(res);
               //console.log()
               if (typeof(this.collaborations[key]) != 'undefined') {
-                if (typeof (res.requestDocument.item.manufacturerParty.brandName[0]) != 'undefined') this.collaborations[key].brandName = res.requestDocument.item.manufacturerParty.brandName[0].value;
+                if (typeof (res.requestDocument.items) != 'undefined') this.collaborations[key].brandName = res.requestDocument.items[0].manufacturerParty.brandName[0].value;
                 else this.collaborations[key].brandName = 'NN';
               }
             })
 
-          dcPromise[key] = this.nimble.getBusinessProcessFromId(this.collaborations[key].associatedProcessInstanceGroups[0].associatedGroups[0])
+          //$ era .associatedGroups[0])
+          dcPromise[key] = this.nimble.getBusinessProcessFromId(this.collaborations[key].associatedProcessInstanceGroups[0].processInstance)
             .then((bpf) => {
               //console.log("bpf");
               //console.log(bpf);
